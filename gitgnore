@@ -1,0 +1,23 @@
+
+### `.gitignore`
+
+Este arquivo especifica os arquivos e diretórios que devem ser ignorados pelo Git, para evitar que arquivos desnecessários sejam versionados.
+
+```gitignore
+# Ignorar arquivos e diretórios temporários do sistema
+.DS_Store
+*.log
+*.tmp
+
+# Ignorar arquivos de configuração local
+*.env
+
+# Ignorar arquivos de backup
+*.bak
+
+# Ignorar diretórios de dependências, se houver
+node_modules/
+venv/
+
+# Ignorar arquivos SQL resultantes de execução
+*.sql
