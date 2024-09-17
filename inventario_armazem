@@ -1,0 +1,75 @@
+set sql_safe_updates = 0;
+
+drop database if exists inventario_armazem;
+
+create database inventario_armazem;
+
+use inventario_armazem;
+
+-- Cria a tabela de categorias primeiro
+create table categorias (
+    categoria_id varchar(100) primary key,
+    nome varchar(100) not null
+);
+
+-- Cria a tabela de produtos que referencia a tabela de categorias
+create table tabela_de_produtos (
+    produto_id int auto_increment primary key,
+    nome varchar(100) not null,
+    descricao varchar(100) not null,
+    preco decimal(10,2) not null,
+    quantidade_estoque decimal(10,2),
+    categoria_id varchar(100) not null,
+    foreign key (categoria_id) references categorias(categoria_id)
+);
+
+-- Cria a tabela de fornecedores
+create table fornecedores (
+    fornecedor_id int auto_increment primary key,
+    nome varchar(100) not null,
+    contato varchar(100) not null,
+    endereco varchar(100) not null
+);
+
+-- Insere dados na tabela de categorias
+insert into categorias (categoria_id, nome) values
+('eletronicos', 'eletrônicos'),
+('moveis', 'móveis'),
+('roupas', 'roupas'),
+('alimentos', 'alimentos');
+
+-- Insere dados na tabela de produtos
+insert into tabela_de_produtos (nome, descricao, preco, quantidade_estoque, categoria_id) values
+('notebook', 'notebook com 16gb de ram e 512gb ssd', 3500.00, 30, 'eletronicos'),
+('mesa de escritório', 'mesa de escritório em madeira', 800.00, 15, 'moveis'),
+('fone de ouvido', 'fone de ouvido com cancelamento de ruído', 450.00, 25, 'eletronicos'),
+('cadeira ergonômica', 'cadeira ergonômica com ajuste de altura', 600.00, 10, 'moveis');
+
+-- Insere dados na tabela de fornecedores
+insert into fornecedores (nome, contato, endereco) values
+('Fornecedor 1', '1234567890', 'Rua A, 123'),
+('Fornecedor 2', '0987654321', 'Avenida B, 456');
+
+-- Consultar dados
+select * from tabela_de_produtos;
+select * from fornecedores;
+select * from categorias;
+select * from tabela_de_produtos where categoria_id = 'eletronicos';
+
+-- Atualizar dados
+update tabela_de_produtos 
+set preco = 3600.00 
+where produto_id = 1;
+
+update categorias 
+set nome = 'eletrônicos e gadgets' 
+where categoria_id = 'eletronicos';
+
+-- Deletar dados
+delete from tabela_de_produtos 
+where produto_id = 4;
+
+delete from categorias 
+where categoria_id = 'alimentos';
+
+set sql_safe_updates = 1;
