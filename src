@@ -1,0 +1,8 @@
+# Inventário Armazém
+
+Este projeto é um banco de dados para gerenciar inventários, categorias e fornecedores. Inclui scripts para criar o banco de dados, definir tabelas, inserir dados e realizar operações básicas de CRUD (criar, ler, atualizar e deletar).
+
+## Estrutura do Projeto
+
+O projeto está organizado da seguinte forma:
+
